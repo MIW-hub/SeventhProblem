@@ -77,11 +77,7 @@ void ASeventhPawnFuction::SetupPlayerInputComponent(UInputComponent* PlayerInput
 {
     Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-    if (UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(PlayerInputComponent))
-    {
-        // 1. MoveAction이 Null인지 반드시 로그로 확인해보세요.
-
-
+         
         if (UEnhancedInputComponent* EnhancedInput = Cast<UEnhancedInputComponent>(PlayerInputComponent))
         {
             if (ASeventhPlayerController* PlayerController = Cast<ASeventhPlayerController>(GetController()))
@@ -109,7 +105,7 @@ void ASeventhPawnFuction::SetupPlayerInputComponent(UInputComponent* PlayerInput
 
         }
 
-    }
+    
     
 }
 void ASeventhPawnFuction::Move(const FInputActionValue& Value)
@@ -121,28 +117,6 @@ void ASeventhPawnFuction::Move(const FInputActionValue& Value)
     AddActorLocalOffset(GetActorForwardVector() * MoveInput.X * MoveSpeed, true);
     AddActorLocalOffset(GetActorRightVector() * MoveInput.Y * MoveSpeed, true);
 }
-//void ASeventhPawnFuction::Look(const FInputActionValue& Value)
-//{
-//    FVector2D LookInput = Value.Get<FVector2D>();
-//
-//    if (Controller != nullptr)
-//    {
-//        // 1. 감도를 충분히 높여줍니다. (직접 회전은 큰 값이 필요할 수 있음)
-//        float Sensitivity = 45.0f;
-//        float DeltaTime = GetWorld()->GetDeltaSeconds();
-//
-//        // 2. 입력값에 시간을 곱해 프레임 독립적인 회전량을 계산합니다.
-//        float YawRotation = LookInput.X * Sensitivity * DeltaTime;
-//        float PitchRotation = -LookInput.Y * Sensitivity * DeltaTime; // 위아래 반전 방지
-//
-//        // 3. FRotator 생성 (Pitch, Yaw, Roll)
-//        FRotator DeltaRot = FRotator(PitchRotation, YawRotation, 0.f);
-//
-//        // 4. 로컬 회전 적용
-//        // bSweep을 false로, bTeleport를 true로 하면 물리 충돌 무시하고 강제 회전합니다.
-//        AddActorLocalRotation(DeltaRot, false, nullptr, ETeleportType::TeleportPhysics);
-//    }
-//}
 
 void ASeventhPawnFuction::Look(const FInputActionValue& Value)
 {
